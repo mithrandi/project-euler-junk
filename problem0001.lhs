@@ -1,4 +1,4 @@
-Merge two sorted lists into a single sorted list, discarding duplicates:
+Merge two unique sorted lists into a single sorted list, discarding duplicates:
 
 > merge (x:xs) (y:ys) | x < y     = x : merge xs (y:ys)
 >                     | x > y     = y : merge (x:xs) ys

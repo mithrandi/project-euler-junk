@@ -2,9 +2,9 @@
 
 > primes = sieve [2..]
 >     where sieve (p:rest) = p : sieve [n | n <- rest, mod n p /= 0]
-
+>
 > divides m n = n `mod` m == 0
-
+>
 > factorise n = unfoldr factor n
 >               where factor 1 = Nothing
 >                     factor m = do f <- find (`divides` m) (takeWhile (<= m) primes)
