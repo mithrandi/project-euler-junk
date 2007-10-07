@@ -105,7 +105,7 @@ So, here are the numbers:
 
 Here's the sum:
 
-> sumOfNumbers = foldl1 (+) numbers
+> sumOfNumbers = sum numbers
 
 And here are the first ten digits:
 

@@ -12,7 +12,7 @@ Let's define an infinite list of triangle numbers:
 
 Ok, we need a way to count the factors of a number:
 
-> countFactors n = foldl1 (+) [count f | f <- takeWhile (\m -> m * m <= n) [1..], n `mod` f == 0]
+> countFactors n = sum [count f | f <- takeWhile (\m -> m * m <= n) [1..], n `mod` f == 0]
 >                  where count m | m * m == n = 1
 >                                | otherwise  = 2
 
