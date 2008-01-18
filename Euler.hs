@@ -17,3 +17,9 @@ factorise n = unfoldr factor n
               where factor 1 = Nothing
                     factor m = do f <- find (`divides` m) (takeWhile (<= m) primes)
                                   return (f, m `div` f)
+
+splitBy :: (a -> Bool) -> [a] -> [[a]]
+splitBy p xs = case dropWhile p xs of
+    [] -> []
+    xs' -> x : splitBy p xs'' where (x, xs'') = break p xs'
+
