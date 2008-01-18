@@ -1,6 +1,7 @@
 module Euler where
 
-import Data.List (unfoldr, find)
+import Data.List (unfoldr, find, nub)
+import Control.Monad (filterM)
 
 merge (x:xs) (y:ys) | x < y     = x : merge xs (y:ys)
                     | x > y     = y : merge (x:xs) ys
@@ -17,6 +18,14 @@ factorise n = unfoldr factor n
               where factor 1 = Nothing
                     factor m = do f <- find (`divides` m) (takeWhile (<= m) primes)
                                   return (f, m `div` f)
+
+powerset :: [a] -> [[a]]
+powerset = filterM (const [True, False])
+
+-- Calculate the proper divisors of an integer
+divisors :: Integer -> [Integer]
+divisors n = nub $ map product cs
+             where cs = tail (powerset . factorise $ n)
 
 splitBy :: (a -> Bool) -> [a] -> [[a]]
 splitBy p xs = case dropWhile p xs of
