@@ -1,21 +1,7 @@
 > import Data.Maybe
 > import Data.List
 
-> merge (x:xs) (y:ys) | x < y     = x : merge xs (y:ys)
->                     | x > y     = y : merge (x:xs) ys
->                     | otherwise = x : merge xs ys
-> merge xs     []     = xs
-> merge []     ys     = ys
->
-> primes = sieve [2..]
->     where sieve (p:rest) = p : sieve [n | n <- rest, mod n p /= 0]
->
-> divides m n = n `mod` m == 0
->
-> factorise n = unfoldr factor n
->               where factor 1 = Nothing
->                     factor m = do f <- find (`divides` m) (takeWhile (<= m) primes)
->                                   return (f, m `div` f)
+> import Euler
 
 > smallest fs = foldl1 (*) factors
 >               where factors = foldl1 merge (map factorise fs)
