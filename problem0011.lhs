@@ -53,5 +53,5 @@ Now we can enumerate all the values of the relevant lines:
 
 And finally, we find the greatest product:
 
-> answer = maximum $ map (foldl1 (*)) (allLines matrixArray)
+> answer = maximum $ map product (allLines matrixArray)
 > main = print answer
