@@ -9,9 +9,9 @@ The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
 
 > primesBelow10 = sum $ takeWhile (<10) primes
 
-Find the sum of all the primes below one million.
+Find the sum of all the primes below two million.
 
-> answer = sum $ takeWhile (<1000000) primes
+> answer = sum $ takeWhile (<2000000) primes
 
 > main = do print primesBelow10
 >           print answer
