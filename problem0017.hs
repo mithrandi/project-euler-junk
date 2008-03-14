@@ -14,7 +14,7 @@ numberInWords n | n == 0           = []
                       "eight", "nine", "ten", "eleven", "twelve", "thirteen",
                       "fourteen", "fifteen", "sixteen", "seventeen",
                       "eighteen", "nineteen"] !! fromIntegral (n - 1)
-          tens n   = ["twenty", "thirty", "fourty", "fifty", "sixty",
+          tens n   = ["twenty", "thirty", "forty", "fifty", "sixty",
                       "seventy", "eighty", "ninety"] !! fromIntegral (n - 2)
 
 lengthInWords :: Integer -> Int
