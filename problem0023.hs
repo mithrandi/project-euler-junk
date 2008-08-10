@@ -1,5 +1,4 @@
 import Data.List
-import Test.QuickCheck
 import qualified Data.Set as Set
 
 import Euler
