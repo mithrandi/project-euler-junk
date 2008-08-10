@@ -5,17 +5,24 @@ import Data.Array.ST
 
 import Euler
 
+limit :: (Num a) => a
+limit = 28123
+
+isAbundant :: Integer -> Bool
 isAbundant n = sum (divisors n) > n
 
-abundants = filter isAbundant [1..28123]
+abundants :: [Integer]
+abundants = filter isAbundant [1..limit]
 
-sums = filter (<= 28123) [x + head xs | xs <- tails abundants, x <- xs]
+sums :: [Integer]
+sums = filter (<= limit) [x + head xs | xs <- tails abundants, x <- xs]
 
 resultsArray :: UArray Int Int
-resultsArray = runSTUArray $ do rs <- newListArray (0, 28123) [0..28123]
+resultsArray = runSTUArray $ do rs <- newListArray (0, limit) [0..limit]
                                 mapM_ (\x -> writeArray rs (fromInteger x) 0) sums
                                 return rs
 
+resultSum :: Int
 resultSum = sum . elems $ resultsArray
 
-main = print $ resultSum == 4179871
+main = print resultSum
