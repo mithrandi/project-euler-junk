@@ -13,10 +13,7 @@ abundants = filter isAbundant [1..28123]
 sums :: Set.Set Integer
 sums = Set.fromList . filter (<= 28123) $ [x + head xs | xs <- tails abundants, x <- xs]
 
-results :: Set.Set Integer
-results = Set.difference (Set.fromList [1..28123]) sums
-
 resultSum :: Integer
-resultSum = Set.fold (+) 0 results
+resultSum = sum [1..28123] - Set.fold (+) 0 sums
 
 main = print resultSum
