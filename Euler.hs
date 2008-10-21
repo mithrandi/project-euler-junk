@@ -1,6 +1,7 @@
 module Euler where
 
 import Data.List (unfoldr, find, nub)
+import Data.Char (digitToInt)
 import Control.Monad (filterM)
 
 merge :: (Ord t) => [t] -> [t] -> [t]
@@ -38,3 +39,6 @@ splitBy :: (a -> Bool) -> [a] -> [[a]]
 splitBy p xs = case dropWhile p xs of
     [] -> []
     xs' -> x : splitBy p xs'' where (x, xs'') = break p xs'
+
+digits :: (Num n) => n -> [Int]
+digits n = map digitToInt (show n)
