@@ -14,6 +14,9 @@ primes :: [Integer]
 primes = sieve [2..]
     where sieve (p:rest) = p : sieve [n | n <- rest, mod n p /= 0]
 
+isPrime :: Integer -> Bool
+isPrime n = n `elem` (takeWhile (<= n) primes)
+
 divides :: (Integral a) => a -> a -> Bool
 divides m n = n `mod` m == 0
 
@@ -35,4 +38,3 @@ splitBy :: (a -> Bool) -> [a] -> [[a]]
 splitBy p xs = case dropWhile p xs of
     [] -> []
     xs' -> x : splitBy p xs'' where (x, xs'') = break p xs'
-
