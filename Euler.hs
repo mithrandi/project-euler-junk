@@ -11,9 +11,9 @@ merge (x:xs) (y:ys) | x < y     = x : merge xs (y:ys)
 merge xs     []     = xs
 merge []     ys     = ys
 
-primes :: [Integer]
-primes = sieve [2..]
-    where sieve (p:rest) = p : sieve [n | n <- rest, mod n p /= 0]
+primes :: (Integral a) => [a]
+primes = 2 : filter isPrime [3, 5..]
+    where isPrime n = all (not . (`divides` n)) (takeWhile (\p -> p * p <= n) primes)
 
 isPrime :: Integer -> Bool
 isPrime n = n `elem` (takeWhile (<= n) primes)
@@ -21,7 +21,7 @@ isPrime n = n `elem` (takeWhile (<= n) primes)
 divides :: (Integral a) => a -> a -> Bool
 divides m n = n `mod` m == 0
 
-factorise :: Integer -> [Integer]
+factorise :: (Integral a) => a -> [a]
 factorise n = unfoldr factor n
               where factor 1 = Nothing
                     factor m = do f <- find (`divides` m) (takeWhile (<= m) primes)
