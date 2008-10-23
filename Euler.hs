@@ -1,6 +1,6 @@
 module Euler where
 
-import Data.List (unfoldr, find, nub, inits, tails)
+import Data.List (unfoldr, find, nub, inits, tails, foldl')
 import Data.Char (digitToInt)
 import Control.Monad (filterM)
 import Control.Applicative ((<$>), (<*>))
@@ -13,10 +13,10 @@ merge xs     []     = xs
 merge []     ys     = ys
 
 primes :: (Integral a) => [a]
-primes = 2 : filter isPrime [3, 5..]
-    where isPrime n = all (not . (`divides` n)) (takeWhile (\p -> p * p <= n) primes)
+primes = 2 : filter isPrime' [3, 5..]
+    where isPrime' n = all (not . (`divides` n)) (takeWhile (\p -> p * p <= n) primes)
 
-isPrime :: Integer -> Bool
+isPrime :: (Integral a) => a -> Bool
 isPrime n = n `elem` (takeWhile (<= n) primes)
 
 divides :: (Integral a) => a -> a -> Bool
@@ -58,3 +58,6 @@ permutations xs   = do (x, rest) <- choices xs
 
 fact :: (Integral t) => t -> t
 fact n = product [1..n]
+
+l2i :: (Num n) => [n] -> n
+l2i = foldl' (\z x -> x + z * 10) 0

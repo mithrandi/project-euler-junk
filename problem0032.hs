@@ -2,9 +2,6 @@ import Euler
 import Data.List
 import Data.Function
 
-l2i :: [Integer] -> Integer
-l2i = foldl' (\z x -> x + z * 10) 0
-
 splitTwice x y s = (a,b,c)
   where (a,p1) = splitAt x s
         (b,c) = splitAt y p1
