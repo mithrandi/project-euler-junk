@@ -55,3 +55,6 @@ permutations :: [a] -> [[a]]
 permutations []   = [[]]
 permutations xs   = do (x, rest) <- choices xs
                        map (x:) (permutations rest)
+
+fact :: (Integral t) => t -> t
+fact n = product [1..n]

@@ -3,8 +3,6 @@ import Data.List
 import Data.Char
 import Euler
 
-fact n = product [1..n]
-
 toFactoradic 1 _ = [0]
 toFactoradic d n = a : toFactoradic (d - 1) b
                    where (a, b) = divMod n (fact (d - 1))
