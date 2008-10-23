@@ -1,8 +1,9 @@
 module Euler where
 
-import Data.List (unfoldr, find, nub)
+import Data.List (unfoldr, find, nub, inits, tails)
 import Data.Char (digitToInt)
 import Control.Monad (filterM)
+import Control.Applicative ((<$>), (<*>))
 
 merge :: (Ord t) => [t] -> [t] -> [t]
 merge (x:xs) (y:ys) | x < y     = x : merge xs (y:ys)
@@ -42,3 +43,15 @@ splitBy p xs = case dropWhile p xs of
 
 digits :: (Num n) => n -> [Int]
 digits n = map digitToInt (show n)
+
+choices :: [a] -> [(a, [a])]
+choices = map (\(x,y) -> (head y, x ++ tail y)) . init . (zip <$> inits <*> tails)
+
+choose :: Int -> [a] -> (a, [a])
+choose n xs = let (l, x:r) = splitAt n xs
+              in (x, l ++ r)
+
+permutations :: [a] -> [[a]]
+permutations []   = [[]]
+permutations xs   = do (x, rest) <- choices xs
+                       map (x:) (permutations rest)
