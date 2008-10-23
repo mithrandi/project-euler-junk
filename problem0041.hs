@@ -3,10 +3,7 @@ import qualified Data.Set as S
 
 import Euler
 
-candPrimes :: [Int]
-candPrimes = takeWhile (< 31623) primes
-
-isPrime' n = all (not . (`divides` n)) (takeWhile (\p -> p * p <= n) candPrimes)
+isPrime' n = all (not . (`divides` n)) (takeWhile (\p -> p * p <= n) primes)
 
 pandigitals = concatMap (map l2i . permutations) (drop 1 $ inits [1..9])
 
