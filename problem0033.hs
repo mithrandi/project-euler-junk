@@ -7,12 +7,10 @@ curious = do
     d <- [1..9]
     n' <- [n * 10 + c, c * 10 + n]
     d' <- [d * 10 + c, c * 10 + d]
-    guard $ n' `rem` 10 /= 0
-    guard $ d' `rem` 10 /= 0
-    guard $ (n' % d') == (n % d)
-    guard $ (n' % d') < 1
-    return (n', d')
+    let f = (n' % d')
+    guard $ f == (n % d) && f < 1
+    return f
 
-problem0033 = denominator . product $ map (uncurry (%)) curious
+problem0033 = denominator . product $ curious
 
 main = print problem0033
