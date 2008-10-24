@@ -1,9 +1,10 @@
 module Euler where
 
 import Data.List (unfoldr, find, nub, inits, tails, foldl')
-import Data.Char (digitToInt)
+import Data.Char (digitToInt, intToDigit)
 import Control.Monad (filterM)
 import Control.Applicative ((<$>), (<*>))
+import Numeric (showIntAtBase)
 
 merge :: (Ord t) => [t] -> [t] -> [t]
 merge (x:xs) (y:ys) | x < y     = x : merge xs (y:ys)
@@ -61,3 +62,12 @@ fact n = product [1..n]
 
 l2i :: (Num n) => [n] -> n
 l2i = foldl' (\z x -> x + z * 10) 0
+
+palindromic :: (Num n) => n -> Bool
+palindromic n = s == reverse s
+    where s = show n
+
+palindromicBase :: (Integral n) => n -> n -> Bool
+palindromicBase b n = s == reverse s
+    where s = showIntAtBase b intToDigit n ""
+
